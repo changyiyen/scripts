@@ -1,5 +1,5 @@
 #!/usr/env sh
-# dependencies: XMLStarlet, (wget)
+# dependencies: XMLStarlet, (wget or curl)
 if [ ! -e "`which xml`" ]; then
     echo "[ERROR] XMLStarlet not found in \$PATH."
 	exit 1
@@ -15,13 +15,13 @@ else
 fi
 
 sleep $((RANDOM % 600))
+## Change this to whereever you would like the results placed
 cd /home/cyyen/ncbi-pubmed
 baseurl="https://eutils.ncbi.nlm.nih.gov/entrez/eutils/"
 # Set PubMed as database to search
 searchquery_base="esearch.fcgi?db=pubmed&"
 
-## Search query terms ##
-## Modify these as needed ##
+## Search query terms; modify these as needed ##
 searchquery_term="term=HLA+Antigens[Mesh]+AND+Lupus+Erythematosus+,+Systemic[Mesh]"
 searchquery_param="&sort=pubdate&retmax=20"
 searchquery=${searchquery_base}${searchquery_term}${searchquery_param}
